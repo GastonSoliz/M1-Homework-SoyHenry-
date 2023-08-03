@@ -1,0 +1,53 @@
+Javascript(RUNTIME):
+-COMPILACION JIT(?)
+	Just In Time
+	Conforme se va compilando el codigo se va ejecutando de forma inmediata
+-Single Threaded y Sincronico
+	Lee linea por linea y no puede realizar mas de una tarea al mismo tiempo(si puede con ayuda externa)
+-Debilmente tipado
+	Variables pueden guardar cualquier tipo de dato(Gran flexibilidad, no siempre lo mejor)
+-Event Loop--> Callback Queue
+	Tomar funciones que toman tiempos, ejecutarlas en 2do plano y devolver el resultado 
+	al codigo principal
+	
+Motor de JS ->V8 (Google Chrome)
+
+	-Call Stack: Donde se ejecuta el codigo(hay un contexto de ejecucion)
+	-Memory Heap: Donde se almacenan los objetos(variables)[Memoria]
+
+Codigo->Parsing(traduccion a maquina)->Compilacion->Ejecucion[ocurre Call Stack]->Optimizacion->Compilacion
+
+**Contexto de ejecucion: Entorno donde cada parte del codigo JS es ejecutado(tendra todo lo necesario para que se ejecute)
+**Contexto Global de ejecucion se crea por default, incluye todas las variables y funciones que se encuentran externas de una funcion
+		Contexto de ejecucion de las funciones se crea cuando se invocan
+		(Cada funcion tiene su contexto de ejecucion)
+		[El contexto global de un navegador es la ventana y todos los metodos que trae]
+
+Contexto de ejecucion se compone:
+		Variables
+		Scope Chain: El ambito donde la variable puede ser ejecutada
+		THIS
+
+Pila de ejecucion: Lugar donde cada contexto de ejecucion es APILADO uno sobre otro para ser ejecutado en un orden correspondiente
+
+**Contexto de bloque: Cada operacion (for,if,while,etc) generan su propio contexto de ejecucion
+			Solo existe con let y const
+
+**NO USAR VAR YA QUE NO OBEDECE AL SCOPE(y tener errores,bugs)**
+
+Hoisting: Proceso en el que las declaraciones (funciones y variables con var) se mueven al principio
+	imprime("hola");
+	Si funciona: Function imprime(a){console.log(a)}
+	No funciona: const imprime = (a) => {console.log(a)}
+
+THIS:
+	Hace referencia al objeto global si no esta dentro de una funcion(o sea al objeto padre que la contiene)
+
+Cohercion de datos:
+	Convertir un dato para que el contexto tenga sentido
+	Ej: console.log("yo soy"+3)=yosoy3
+	console.log("2"+3)=23
+	console.log("2"*3)=6
+	[NOTAR COMO EL + CONCATENA TRANSFORMANDO A STRING Y CON * TRANSFORMA A NUMBER]
+	[SOLO + CONCATENA]
+	

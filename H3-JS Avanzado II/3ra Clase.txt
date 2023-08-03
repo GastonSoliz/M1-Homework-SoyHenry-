@@ -1,0 +1,85 @@
+https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Operators/Operator_precedence
+FIJARSE LAS CLASES GRABADAS : JORGE 36A Y DAI 34A
+backticks `` alt + 96
+spreadOperator ... ->toma lo de un array o objeto y lo esparce
+
+Closures->Funciones que retornan otra funcion, que pueden acceder al contexto padre
+Ej
+function saludar(saludo){
+	return function(nombre){
+		console.log(`${saludo} ${nombre}`)
+	}
+}
+
+[[template string ${}-> es lo mismo que una concatenacion solo que dinamica]]
+
+let saludarHola = saludar("hola")
+
+console.log(saludarHola); //hola
+
+saludarHola("Gama"); //hola Gama
+
+la funcion saludarHola tiene memoria donde ya le llego el hola y ahora se le pasa el nombre
+Es decir, ya se declaro saludarHola como la funcion de parametro Hola
+
+Ej
+const condeContar = function(){
+	let cuentaGalletas=0;
+	return function(){
+		cuentaGalletas++;
+		console.log(`${cuentaGalletas} galletas`);
+	}
+}
+
+const contar = condeContar(); //0
+contar(); //1
+contar(); //2
+y asi...
+
+const contar2 = condeContar(); //0
+contar2(); //1
+contar(); //3
+-------------------------------------------------------------------------------------------
+Particularidades
+****NO USAR (FOR VAR I=0;I<3;I++){
+	arr.push(()=>console.log(i));
+}
+te devolvera 3 3 3***Usar let
+
+Metodos de contexto->Permitiran modificar su valor o a donde esta apuntando. Tambien permite pasar argumentos
+CALL BIND APPLY
+SIEMPRE EL PRIMER PARAMETRO ES EL THIS, EL RESTO SON VALORES DE UNA FUNCION
+CALL
+prototype.call(this,"","")
+this a donde quiero apuntar
+"" datos que me pide el metodo
+
+funciona cuando tenes declarado algo en algun lugar y en otro no, y queres usar el metodo de el algo con los datos del otro
+Ej
+const seleccionador = griffindor.sombrero;(donde el objeto griffindor tiene el metodo sombrero
+que tiene un console log con los datos, usando `${datos de objeto}`)
+
+seleccionador.call(ravenclaw,"Cho","Chang");
+
+APPLY
+
+funciona igual a Call pero metiendolo con arrays (mas corto)
+const dataAlumnos = ["Cedric","Diegory"]
+seleccionador.apply(hufflepuff,dataAlumnos)
+
+si lo hiciera con call, me tomaria todo el array de dataAlumnos como un String
+
+BIND**
+funciona igual que call, nomas que no se invoca directo en la funcion sino dentro
+Ej
+const seleecionSlytherin = seleccionador.bing(slytherin); // es la como la primer parte del call
+seleccionSlytherin("Tom","Riddle"); //estos datos son los que restan del call
+
+tambien se puede usar como
+const weasleys=["Ginny","Percy",""George","Fred","Charly","Ron"];
+const seleccionWeasleys = seleccionador.bind(griffindor,"Weasley");
+
+weasleys.forEach((nombre)=>{
+	seleccionWeasleys(nombre)})
+
+

@@ -1,0 +1,14 @@
+&& -> Muestra la segunda opcion
+Ej Console.log("hola"&&"hola mundo")
+hola mundo
+
+|| -> Muestra la primera opcion
+Ej Console.log("hola"||"hola mundo")
+hola
+
+Comentar un area seleccionada
+ctrl+k+c
+Descomentar 
+ctrl+k+u
+
+Mientras mas commits al github, mas contribuciones que se van a fijar los reclutadores
