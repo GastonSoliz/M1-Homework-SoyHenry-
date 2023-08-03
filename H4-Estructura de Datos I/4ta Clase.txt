@@ -1,0 +1,107 @@
+RECURSION->Tecnica en la que una funcion se llama a si misma para repetir un procedimiento y llegar a un resultado
+Composicion:
+	1-Caso Base: Que se esta evaluando
+	2-Operacion de continuacion: Si no se cumple el caso base como avanzo
+	3-Corte o retorno: Cuando se cumple con el caso base que devuelvo
+Ej:
+function recursiva(condition){
+	if(condition){//Caso base
+		return true	//corte o retorno
+	}else{
+		recursiva(condition-1)	//continuacion
+	}
+
+}
+
+MAP -> Metodo para recorrer arrays
+personajes.map((personaje)=>{
+	console.log(personaje);
+}):
+
+FOREACH
+personajes.forEach((personaje)=>{
+	console.log(personaje);
+}):
+
+FOROF
+for(let personaje of personajes){
+	console.log(personaje);
+}
+
+Ej
+function imprimePersonajes(personas){
+	if(personajes.length){ //hasta que este vacio porque shift los extrae y elimina el espacio
+		let personaje = personajes.shift();
+		console.log(personaje);
+		imprimePersonajes(personajes);
+	}
+}
+
+La funcion debe llamarse a si misma para ser recursiva
+Debe tener al menos una sentencia de cierre...
+--------------------------------------------------------------------
+ESTRUCTURAS DE DATOS
+Metodos en arrays
+https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array
+
+console.log(comunidad.pop())->extrae el ultimo elemento
+comunidad.unshift(muerto2)-> para agregar al inicio
+comunidad.push(muerto2)->para agregar al final
+
+console.log(comunidad.splice(0,2))->extrae elementos segun se lo indique.. el primero donde inicia y el 2do la cantidad
+splice modifica el array original
+
+console.log(comunidad.slice(0,2))->hace lo mismo que splice pero no modifica el array original
+
+comunidad.indexOf("")->busca un elemento en particular y devuelve su posicion
+comunidad.includes()->busca un elemento en particular pero no devuelve su posicion, sino un boolean
+
+FILTER->recibe un cb que recorre el array y por cada elemento va a ejecutar la funcion {} [devuelve todas la coincidencias modificar el array]
+comunidad.filter((element)=>{
+});
+
+FIND-> solo devuelve la primera coincidencia
+comunidad.fin((element)=> element === " "); 
+
+----------------------------------------------------------
+SET->Similar a array solo que no repiten elementos*******VOLVER A VER
+const michiPizzeria = new Set{
+	...
+	...
+}
+
+console.log(michiPizzera.size)
+
+function agregarPizzas(){
+	nuevasPizzas.forEach((pizza)=>{
+		michiPizzeria.add(pizza);
+	})
+}
+
+add-> trata de insertar un elemento al Set, si repite lo reemplaza (o sea no repite)
+--------------------------------------------------------
+PILA(STACK)
+-Estructura LIFO: Last in First Out -> Los ultimos que entran son los primeros que salen
+No es un estructura nativa del lenguaje pero si se implementa como una clase con arrayg(como un concepto)
+
+Tendra sus operaciones concepto:
+	-Push():Agrega al final
+	-Pop():Extrae el final
+-------------------------------------------------------------
+QUEUE
+-Estructura FIFO: First In First Out-> El primero en entrar es el primero en salir
+(Ej: Una fila por orden de llegada).
+
+Operaciones:
+	-Push():Agrega al final
+	-Shift():Extrae el primero
+
+function Queue(){
+	this.fila=[];
+}
+
+Queue.prototype.add = function(){}
+Queue.prototype.remove = function(){}
+
+let miQueue = new Queue();
+
