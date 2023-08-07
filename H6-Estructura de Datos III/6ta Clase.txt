@@ -1,0 +1,42 @@
+ARBOLES BINARIOS->Consta de nodos, donde el inicial es una raiz y tendra como maximo 2 hijos
+Cada hijo sera una raiz de sus propios hijos, esto seguira hasta que un nodo apunte a null
+Estos ultimos se denominaran NODOS HOJAS(el fin del arbol);
+
+ARBOL BINARIO DE BUSQUEDA (ABB)
+Se seguira un orden para que el arbol tenga una secuencia, y sea mas facil de manejo de datos
+
+if(value<this.value){//compara el dato nuevo con la raiz 
+	if(this.left===null){//
+		this.left=subTree;(variable arbol)
+	}else{
+		this.left.insert(value);
+	}
+	
+}else{
+	if(this.right===null){
+		this.right==subTree;
+	}else{
+		this.right.insert(value);
+	}
+}
+
+
+ARBOL BINARIO AUTOBALANCEADO
+Buscara todas las maneras posibles para que el arbol llene todos los nodos de un nivel para crear otro
+Colocando el dato normalmente, y comparando con todos los nodos posibles para organizar.
+
+MAX HEAP->Orden de mayor a menor(empezando de raiz a hojas)
+MIN HEAP->Orden de menor a mayor
+
+----------------------------------------------------------------------
+RECORRIDO
+Breadth First Search(BFS)
+Recorre el arbol por niveles
+
+Depth First Search(DFS) [Dependiendo el orden]
+Explora los subnodos izq, luego nodo actual y luego sub arbol derecho
+
+	-PREORDER(Nodo-Izq-Der)
+	-INORDER (Izq-Nodo-Der)
+	-POSTORDER(Izq-Der-Nodo)
+
