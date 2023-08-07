@@ -1,0 +1,62 @@
+	LISTA ENLAZADA->Consta de nodos interconectados. Estos nodos contienen un valor y una referencia al siguiente nodo
+
+TIPOS DE LISTAS ENLAZADAS
+-SIMPLE(USAREMOS ESTA)
+-DOBLE 
+-CIRCULAR
+-CIRCULAR DOBLE
+
+ESTRUCTURA
+Al tener una secuencia de nodos, tendremos un valor inicial
+HEAD-> que apunta un NODO
+NODO-> que apunta otro NODO hasta llegar a NULL
+NULL-> fin de la lista enlazada
+
+IMPLEMENTACION
+-Funcion Constructora(USAREMOS ESTA POR AHORA)
+-Clases
+
+CODIGO:
+function Nodo(data){
+	this.data = data;
+	this.next = null;
+}
+
+function LinkedList(){
+	this._length = 0; //IMPORTANTE AGREGAR EL "._"(underscore) para que sea una propiedad diferente al length nativo
+	this.head = null;
+}
+
+PARA AGREGAR LOS METODOS NECESARIOS SE USARA EL PROTOTYPE
+LinkedList.prototype.insert=function(data,next){
+	let node = new Nodo (data);
+	let current = this.head;
+
+	if(!current){
+		this.head=node;
+	}else{
+		while(current.next){
+			current=current.next;
+		}
+		current.next=node;
+	}
+	this._length++;
+}
+Lo que hace aqui es iniciar un current ("indice") en head, y recorrer hasta dar con el ultimo nodo
+El if sirve para el caso de ser lista vacia, o ya tenga cosas agregadas
+
+-------------------------------------------------------------------------------------
+HASH TABLE->Una lista de pares en clave-valor, retorna un valor (que encripta) segun la contraseña
+
+ESTRUCTURA
+KEY->Valor
+BUCKETS->Espacio
+ENTRIES->Donde se almacena,y se tiene la contraseña
+
+
+HOMEWORK
+Prototype para cada metodo
+LinkedList.prototype.add =function(){}
+Search...(callback->funcion que se recibe por parametro)
+
+HASHTABLE NO IMPLEMENTA PARA EL SUP

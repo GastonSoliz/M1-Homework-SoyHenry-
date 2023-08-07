@@ -1,0 +1,150 @@
+'use strict';
+
+/* EJERCICIO 1
+Implementar la clase LinkedList, definiendo los siguientes métodos:
+  - add: agrega un nuevo nodo al final de la lista;
+  - remove: elimina el último nodo de la lista y retorna su valor (tener en cuenta el caso particular de una lista de un solo nodo y de una lista vacía);
+  - search: recibe un parámetro y lo busca dentro de la lista, con una particularidad: el parámetro puede ser un valor o un callback. En el primer caso, buscamos un nodo cuyo valor coincida con lo buscado; en el segundo, buscamos un nodo cuyo valor, al ser pasado como parámetro del callback, retorne true. 
+  EJEMPLO 
+  search(3) busca un nodo cuyo valor sea 3;
+  search(isEven), donde isEven es una función que retorna true cuando recibe por parámetro un número par, busca un nodo cuyo valor sea un número par.
+  En caso de que la búsqueda no arroje resultados, search debe retornar null.
+*/
+
+function Node(value) {
+  this.value=value;
+  this.next=null;
+}
+
+function LinkedList() {
+  this._length=0;
+  this.head=null;
+
+  LinkedList.prototype.add=function(value){
+    let node = new Node(value);
+    let current = this.head;
+
+    if(current===null){
+      this.head=node;
+    }else{
+      while(current.next!=null){
+        current=current.next;
+      }
+      current.next=node;
+    }
+    
+    this._length++;
+  }
+
+  LinkedList.prototype.remove= function(){
+    let current = this.head;
+
+    if(current == null){ //LISTA VACIA DEVUELVE NULL
+      return null
+    }
+    if(current.next == null){ //LISTA DE UN SOLO NODO
+      let aux = current.value;
+      this.head=null;
+      this._length--;
+      return(aux); 
+    }
+      while(current.next.next!=null){ //LISTA CON VARIOS ELEMENTOS
+        current=current.next;
+      }
+
+      let ult = current.next.value; //POSICIONO UN AUX EN EL ULTIMO NODO
+      current.next=null;      //ELIMINO EL ULTIMO NODO ORIGINAL
+      this._length--;
+
+      return(ult);
+    
+  }
+
+  LinkedList.prototype.search= function(value){
+    let current = this.head;
+
+    if(current==null){
+      return null;
+    }
+    while(current!=null){
+      if(current.value === value){       //SI EL DATO NO ES FUNCION
+        return(current.value);
+      }
+      if(typeof value === "function"){  //SI EL DATO ES UNA FUNCION(ANALIZAR)
+        if(value(current.value)){
+          return(current.value);
+        }
+      }
+      current=current.next;
+    }
+    return null;                      //EN CASO DE NO ENCONTRARLO
+  }
+
+}
+
+
+/* EJERCICIO 2
+Implementar la clase HashTable.
+Nuetra tabla hash, internamente, consta de un arreglo de buckets (slots, contenedores, o casilleros; es decir, posiciones posibles para almacenar la información), donde guardaremos datos en formato clave-valor (por ejemplo, {instructora: 'Ani'}).
+Para este ejercicio, la tabla debe tener 35 buckets (numBuckets = 35). (Luego de haber pasado todos los tests, a modo de ejercicio adicional, pueden modificar un poco la clase para que reciba la cantidad de buckets por parámetro al momento de ser instanciada.)
+
+La clase debe tener los siguientes métodos:
+  - hash: función hasheadora que determina en qué bucket se almacenará un dato. Recibe un input alfabético, suma el código numérico de cada caracter del input (investigar el método charCodeAt de los strings) y calcula el módulo de ese número total por la cantidad de buckets; de esta manera determina la posición de la tabla en la que se almacenará el dato.
+  - set: recibe el conjunto clave valor (como dos parámetros distintos), hashea la clave invocando al método hash, y almacena todo el conjunto en el bucket correcto.
+  - get: recibe una clave por parámetro, y busca el valor que le corresponde en el bucket correcto de la tabla.
+  - hasKey: recibe una clave por parámetro y consulta si ya hay algo almacenado en la tabla con esa clave (retorna un booleano).
+
+Ejemplo: supongamos que quiero guardar {instructora: 'Ani'} en la tabla. Primero puedo chequear, con hasKey, si ya hay algo en la tabla con el nombre 'instructora'; luego, invocando set('instructora', 'Ani'), se almacenará el par clave-valor en un bucket específico (determinado al hashear la clave)
+*/
+function HashTable() {
+  this.buckets=[];
+  this.numBuckets=35;
+
+  HashTable.prototype.hash= function(input){
+    let suma = 0;
+
+    for(let i=0;i<input.length;i++){
+      suma+=input.charCodeAt(i);
+    }
+
+    return(suma%this.numBuckets); //Sacando el modulo me da un numero menor al dividendo
+  }
+
+  HashTable.prototype.set= function(key,value){
+    //como agregar en un indice especifico de array?
+    if(typeof key !== "string"){
+      throw TypeError("Debe ser un string");
+    }
+      let index = this.hash(key);
+      if(this.buckets[index]==undefined){ //buckets[{25:{key:value}}]
+        this.buckets[index]={};
+      } //MANEJO DE COLISIONES
+        this.buckets[index][key]=value; //SUSTITUYE LO QUE YA ESTA;
+      
+    
+  }
+
+  HashTable.prototype.get= function(key){
+    let index=this.hash(key);
+
+    if(this.buckets[index][key]){
+      return(this.buckets[index][key]);
+    }
+  }
+
+  HashTable.prototype.hasKey= function(key){
+    let index=this.hash(key);
+
+    return(this.buckets[index].hasOwnProperty(key));
+  }
+
+}
+
+// No modifiquen nada debajo de esta linea
+// --------------------------------
+
+module.exports = {
+   Node,
+   LinkedList,
+   HashTable,
+};
