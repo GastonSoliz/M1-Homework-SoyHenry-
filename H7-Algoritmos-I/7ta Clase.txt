@@ -34,7 +34,7 @@ mientras que swap sea true tengo que seguir haciendo el ordenamiento
 consejo=2 for o 1 while
 
 -Insertion Sort->
-	Toma un elemento que va comparando con sus anteriores quienes si van diciendo mayor los desplaza
+	Toma un elemento que va comparando con sus anteriores quienes si van siendo mayor los desplaza
 	Empieza desde el 2do elemento
 	Complejidad->O(n)[Mayor cantidad de casos] pero igual que Bubble Sort depende que tan desordenados puede terminar en O(n^2)
 
