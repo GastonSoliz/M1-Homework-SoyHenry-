@@ -1,0 +1,63 @@
+ALGORITMOS I (eficiencia de un algoritmo,ordenar datos eficientemente, metodos de ordenamiento)
+Secuencia ordenada y *finita* de pasos que se van a realizar para poder completar un proceso/tarea
+	1-Resuelve el problema->Declara si sirve o no
+
+COTA SUPERIOR ASINTOTICA
+-Funcion Big O Notation->
+No queremos que nuestro algoritmo tarde muchas operaciones con pocos elementos
+Trataremos de lograr algoritmos con complejidad O(n log n)
+	O(n) lineal ->(con un for solo?)
+	O(1) constante,O(log n)
+
+Los que no se deben lograr:
+	O(n!)
+	O(2^n)
+	O(n^2)->cuadratica-> [] x2 for(for) -> Recorrer un array
+
+	O(n*m)-> Comparar 2 array multiplicando sus elementos
+
+LA RECURSION ES MAS EFICIENTE
+EN VEZ DE 2 FOR ES MEJOR LA RECURSION
+	
+---------------------------------------------------------------------------------------
+ORDENAMIENTO
+-Bubble Sort->Rapido de implentar, pero dependiendo de sus elementos y desordenamiento
+		puede llegar de O(n)[primer recorrido ya ordene] hasta O(n^2)[recorra el array por la cantidad de elementos] 
+	Compara por pares
+pseudocodigo
+i >i+1
+si es mayor intercambio
+recorro los punteros
+generar un marcador que sea true al hacer un cambio
+let swap = false ===> si llego a hacer un cambio lo modifico a true
+mientras que swap sea true tengo que seguir haciendo el ordenamiento
+consejo=2 for o 1 while
+
+-Insertion Sort->
+	Toma un elemento que va comparando con sus anteriores quienes si van diciendo mayor los desplaza
+	Empieza desde el 2do elemento
+	Complejidad->O(n)[Mayor cantidad de casos] pero igual que Bubble Sort depende que tan desordenados puede terminar en O(n^2)
+
+pseudocodigo
+i
+	j
+2do elemento j=i+1;
+compara (j<i)->lo invierto(ojo aqui utilizar un auxiliarpara no perder el valor)
+consejo=usar while
+FALTATODAVIA
+
+-Selection Sort->COMPLEJIDAD O(n)
+	Marca un dato como el valor mas pequeño y recorre hasta encontrar uno menor que pasara a tener la marca
+	El elemento marcado pasa a estar primero(intercambiandose con el que estaba primero antes) y asi sucesivamente
+
+pseudocodigo
+i
+	j
+let min = i = 0 ->1er dato
+compara(i<j)->min=j 
+si termine de recorrer el array coloco el valor min en la posicion de i
+recorro ambos marcadores
+¿cada recorrida se aumenta i(for)
+y j vuelve a j
+o sea un for dentro de un for?
+consejo=2 for
